@@ -1,0 +1,54 @@
+<div class="container centrar">
+  <div class="row jumbotron jumbotron-fluid">
+    <img [src]="converterBase64ToImg(persona.banner)" alt="NO HAY BANNER" class="banner">
+  </div>
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <div class="container centrar" >
+        <div class="row">
+          <img src={{converterBase64ToImg(persona.perfil)}} alt="NO HAY FOTO DE PERFIL" class="rounded-circle border border-dark perfil"> <br>
+        </div>
+        <div class="row">
+          <p><b>Telefono</b>: {{persona.telefono}}</p> <br> <p><b>Mail</b>: {{persona.email}}</p>
+        </div>
+      </div>
+    </div>  
+    <div class="col-9 big-box">
+        <h1>{{persona.nombre}} {{persona.apellido}}</h1> <hr> <br>
+        <p>{{persona.acercaDe}}</p>
+    </div>
+    <button (click)="editMode=!editMode" *ngIf="logIn && per_id==getId" class="btn btn-primary formulario">Editar Informacion personal</button>
+    <form *ngIf="logIn && editMode" class="form-inline border border-secondary formulario" [formGroup]="form" (ngSubmit)="onEditar($event)">
+      <div class="form-group">
+        <label class="input-group-text">Nombre</label>
+        <input type="text" formControlName="nombre" [(ngModel)]="persona.nombre" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Apellido</label>
+        <input type="text" formControlName="apellido" [(ngModel)]="persona.apellido" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Foto de Perfil:</label>
+        <input type="file" formControlName="perfil" (change)="onChangePerfil($event)" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Banner</label>
+        <input type="file" formControlName="banner" (change)="onChangeBanner($event)" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Telefono</label>
+        <input type="number" formControlName="telefono" [(ngModel)]="persona.telefono" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Email</label>
+        <input type="text" formControlName="email" [(ngModel)]="persona.email" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Acerca De</label>
+        <textarea formControlName="acercaDe" class="form-control" [(ngModel)]="persona.acercaDe"></textarea>
+      </div> <br>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+</div>

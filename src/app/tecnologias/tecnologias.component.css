@@ -1,0 +1,22 @@
+*{
+  text-align:center;
+}
+form{
+  width:500px;
+  display:block;
+  margin:0 auto;
+  text-align:center;
+}
+.form-max{
+  max-width:300px;
+}
+.background-lb{
+  background-color:LightSkyBlue;
+}
+.background-lg{
+  background-color:LightGreen;
+}
+.border{
+  min-width:200px;
+  margin:5px;
+}

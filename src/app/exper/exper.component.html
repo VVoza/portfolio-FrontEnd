@@ -1,0 +1,91 @@
+<div class="container">
+  <h2>Experiencias laborales</h2> <hr>
+  <button type="button" *ngIf="logIn && getId==per_id" (click)="addMode=!addMode" class="btn btn-success" >Añadir nueva experiencia</button>
+  <!-- Formulario para añadir entradas -->
+  <br>
+  <form  class="form-inline border border-secondary" [formGroup]="formAdd" *ngIf="addMode==true" (ngSubmit)="onEnviar($event)">
+      <br>
+      <h4>Nueva Experiencia laboral</h4> <br>
+      <div class="form-group">
+        <label class="input-group-text">Puesto</label>
+        <input type="text" formControlName="puesto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Periodo</label>
+        <input type="text" formControlName="periodo" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Empresa</label>
+        <input type="text" formControlName="empresa" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Contacto</label>
+        <input type="text" formControlName="contacto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Descripcion</label>
+        <textarea formControlName="descripcion" class="form-control"></textarea>
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Imagen de la Empresa:</label>
+        <input #imageInput type="file" formControlName="img" accept="image/*" (change)="fileChange($event)" class="form-control">
+      </div>
+      <br>
+      <input type="submit" class="btn btn-primary"><br>
+  </form>
+  <!-- Fin Formulario -->
+  <br>
+  <!-- Lista de Experiencias con sus formularios de edición -->
+  <div class="row margin-top" *ngFor="let exp of ExpList">
+    <br>
+    <div class="card" id={{exp.id}} *ngIf="this.editMode!=exp.id" >
+      <div class="row">
+        <div class="col-md-3">
+          <img src={{converterBase64ToImg(exp.img)}} class="card-img" alt="NO HAY IMAGEN">
+        </div>
+        <div class="col">
+          <div class="card-body">
+            <div class="card-title"><h4>{{exp.puesto}}</h4><button *ngIf="logIn && getId==per_id" (click)="edit(exp.id)" class="btn btn-primary">Editar</button><button (click)="onBorrar(exp.id)" *ngIf="logIn" class="btn btn-danger">Borrar</button></div>
+            <p class="card-header">{{exp.periodo}} <br> {{exp.empresa}} <br> <b>Contacto</b>: {{exp.contacto}}</p> 
+            <p class="card-text">{{exp.descripcion}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form  class="form-inline border border-secondary" [formGroup]="form" *ngIf="this.editMode==exp.id"  (ngSubmit)="onEditar(exp.id)">
+       <br>
+        <button type="button" (click)="editMode=-1" class="btn btn-warning">Volver</button>
+       <br>
+       <div class="form-group">
+        <label class="input-group-text">Puesto</label>
+        <input type="text" formControlName="puesto" [(ngModel)]="exp.puesto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Periodo</label>
+        <input type="text" formControlName="periodo" [(ngModel)]="exp.periodo" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Empresa</label>
+        <input type="text" formControlName="empresa" [(ngModel)]="exp.empresa" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Contacto</label>
+        <input type="text" formControlName="contacto" [(ngModel)]="exp.contacto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Descripcion</label>
+        <textarea formControlName="descripcion" [(ngModel)]="exp.descripcion" class="form-control"></textarea>
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Imagen de la Empresa:</label>
+        <input #imageInput type="file" formControlName="img" accept="image/*" (change)="fileChange($event)" class="form-control">
+      </div>
+      <br>
+      <input type="submit" class="btn btn-primary">
+      <br>
+      
+    </form>
+    <br>
+  </div>
+  <!-- Fin de lista -->
+</div>

@@ -1,0 +1,91 @@
+<div class="container">
+  <h2>Educación</h2> <hr>
+  <button type="button" *ngIf="logIn && getId==per_id" (click)="addMode=!addMode" class="btn btn-success" >Añadir nueva formacion</button>
+  <!-- Formulario para añadir entradas -->
+  <form  class="form-inline border border-secondary" [formGroup]="formAdd" *ngIf="addMode==true" (ngSubmit)="onEnviar($event)">
+      <br>
+      <h4>Nueva Formación</h4>
+      <br>
+      <div class="form-group">
+        <label class="input-group-text">Titulo</label>
+        <input type="text" formControlName="titulo" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Instituto</label>
+        <input type="text" formControlName="instituto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Contacto</label>
+        <input type="text" formControlName="contacto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Periodo</label>
+        <input type="text" formControlName="periodo" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Descripcion</label>
+        <input type="text" formControlName="descripcion" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Imagen de la Empresa:</label>
+        <input #imageInput type="file" formControlName="imagen" accept="image/*" (change)="fileChange($event)" class="form-control">
+      </div>
+      <br>
+      <input type="submit" class="btn btn-primary">
+      <br>
+  </form>
+  <!-- Fin Formulario -->
+
+  <!-- Lista de Formaciones con sus formularios de edición -->
+  <div class="row margin-top" *ngFor="let edu of listaEducacion">
+    <br>
+    <div class="card" id={{edu.id}} *ngIf="this.editMode!=edu.id" >
+      <div class="row">
+        <div class="col-md-3">
+          <img src={{converterBase64ToImg(edu.imagen)}} class="card-img" alt="NO HAY IMAGEN">
+        </div>
+        <div class="col">
+          <div class="card-body">
+            <div class="card-title"><h4>{{edu.titulo}}</h4><button *ngIf="logIn && getId==per_id" (click)="edit(edu.id)" class="btn btn-primary">Editar</button><button (click)="onBorrar(edu.id)" *ngIf="logIn" class="btn btn-danger">Borrar</button></div>
+            <p class="card-header">{{edu.periodo}} <br> {{edu.instituto}} <br> <b>Contacto</b>: {{edu.contacto}}</p> 
+            <p class="card-text">{{edu.descripcion}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form  class="form-inline border border-secondary" [formGroup]="form" *ngIf="this.editMode==edu.id"  (ngSubmit)="onEditar(edu.id)">
+       <br>
+        <button type="button" (click)="editMode=-1" class="btn btn-warning">Volver</button>
+       <br>
+       <div class="form-group">
+        <label class="input-group-text">Titulo</label>
+        <input type="text" formControlName="titulo" [(ngModel)]="edu.titulo" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Instituto</label>
+        <input type="text" formControlName="instituto" [(ngModel)]="edu.instituto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Contacto</label>
+        <input type="text" formControlName="contacto" [(ngModel)]="edu.contacto" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Periodo</label>
+        <input type="text" formControlName="periodo" [(ngModel)]="edu.periodo" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Descripcion</label>
+        <textarea formControlName="descripcion" [(ngModel)]="edu.descripcion" class="form-control"></textarea>
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Imagen de la Empresa:</label>
+        <input #imageInput type="file" formControlName="imagen" accept="image/*" (change)="fileChange($event)" class="form-control">
+      </div>
+      <br>
+      <input type="submit" class="btn btn-primary">
+      <br>
+    </form>
+    <br>
+  </div>
+  <!-- Fin de lista -->
+</div>

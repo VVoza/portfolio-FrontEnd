@@ -1,0 +1,9 @@
+.margin-top{
+  margin-top: 10px;
+}
+form{
+  width:500px;
+  display:block;
+  margin:0 auto;
+  text-align:center;
+}

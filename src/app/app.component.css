@@ -1,0 +1,7 @@
+* {
+  margin:0;
+  padding:0;
+}
+router-outlet{
+  text-align:center;
+}

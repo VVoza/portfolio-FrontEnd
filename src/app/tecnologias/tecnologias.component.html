@@ -1,0 +1,118 @@
+<div class="container">
+  <button type="button" *ngIf="logIn && getId==per_id" (click)="addMode=!addMode" class="btn btn-success" >Añadir nueva 'Skill'</button>
+  <!-- Formulario para añadir entradas -->
+  <form  class="form-inline border border-secondary justify-content-center" [formGroup]="formAdd" *ngIf="addMode==true" (ngSubmit)="onEnviar($event)">
+      <br>
+        <h4>Nueva Habilidad</h4>
+      <br>
+      <div class="form-group">
+        <label class="input-group-text">Nombre</label>
+        <input type="text" formControlName="nombre" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Descripcion</label>
+        <textarea formControlName="descripcion" class="form-control"></textarea>
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Maestria (Percentaje)</label>
+        <input type="number" formControlName="maestria" class="form-control">
+      </div> <br>
+      <div class="form-group">
+        <label class="input-group-text">Tipo</label>
+        <select type="text" formControlName="tipo" class="form-control">
+          <option>hard</option>
+          <option>soft</option>
+        </select>
+      </div> <br>
+      <input type="submit" class="btn btn-primary">
+  </form>
+  <!-- Fin Formulario -->
+  <br>
+  <div class="container">
+    <!-- Muestra de Hard Skills con su formulario de edición-->
+    <h2>Hard Skills</h2> <hr>
+    <div class="row">
+      <div *ngFor="let tec of filtroLista(listaTecnologias,'hard')" class="col background-lb border rounded">
+        <div *ngIf="this.editMode!=tec.id">
+          <button *ngIf="logIn && getId==per_id" (click)="edit(tec.id)" class="btn btn-primary">Editar</button><button (click)="onBorrar(tec.id)" *ngIf="logIn" class="btn btn-danger">Borrar</button>
+          <br>
+          <h3>{{tec.nombre}}</h3> <br> <hr>
+          <p>{{tec.descripcion}}</p>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{tec.maestria}}%;" attr.aria-valuenow={{tec.maestria}} aria-valuemin="0" aria-valuemax="100">{{tec.maestria}}%</div>
+          </div>
+          <br>
+        </div>
+        <form  class="form-inline border border-secondary" [formGroup]="form" *ngIf="this.editMode==tec.id"  (ngSubmit)="onEditar(tec.id)">
+          
+          <div class="form-group">
+            <label class="input-group-text">Nombre</label>
+            <input type="text" formControlName="nombre" [(ngModel)]="tec.nombre" class="form-control">
+          </div> <br>
+          <div class="form-group">
+            <label class="input-group-text">Descripcion</label>
+            <textarea formControlName="descripcion" class="form-control">{{tec.descripcion}}</textarea>
+          </div> <br>
+          <div class="form-group">
+            <label class="input-group-text">Maestria (Percentaje)</label>
+            <input type="number" formControlName="maestria" [(ngModel)]="tec.maestria" class="form-control">
+          </div> <br>
+          <div class="form-group">
+            <label class="input-group-text">Tipo</label>
+            <select type="text" formControlName="tipo" [(ngModel)]="tec.tipo" class="form-control">
+              <option>hard</option>
+              <option>soft</option>
+            </select>
+          </div> <br>
+          <input type="submit" class="btn btn-primary"> <br>
+        </form>
+          <button type="button" *ngIf="this.editMode==tec.id" (click)="editMode=-1" class="btn btn-warning">Volver</button>
+        </div>
+    </div>
+  </div>
+  <!-- Fin de Muestra -->
+  <br><br>
+  <!-- Muestra de Soft Skills con su formulario de edición-->
+  <div class="container">
+    <h2>Soft Skills</h2> <hr>
+    <div class="row">
+      <div *ngFor="let tec of filtroLista(listaTecnologias,'soft')" class="col background-lg border rounded">
+          <div *ngIf="this.editMode!=tec.id">
+            <button *ngIf="logIn && getId==per_id" (click)="edit(tec.id)" class="btn btn-primary">Editar</button><button (click)="onBorrar(tec.id)" *ngIf="logIn" class="btn btn-danger">Borrar</button>
+            <br>
+            <h3>{{tec.nombre}}</h3> <br> <hr>
+            <p>{{tec.descripcion}}</p>
+            <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: {{tec.maestria}}%;" attr.aria-valuenow={{tec.maestria}} aria-valuemin="0" aria-valuemax="100">{{tec.maestria}}%</div>
+            </div>
+            <br>
+          </div>
+          <form  class="form-inline border border-secondary" [formGroup]="form" *ngIf="this.editMode==tec.id"  (ngSubmit)="onEditar(tec.id)">
+            <div class="form-group">
+              <label class="input-group-text">Nombre</label>
+              <input type="text" formControlName="nombre" [(ngModel)]="tec.nombre" class="form-control">
+            </div> <br>
+            <div class="form-group">
+              <label class="input-group-text">Descripcion</label>
+              <textarea formControlName="descripcion" [(ngModel)]="tec.descripcion" class="form-control"></textarea>
+            </div> <br>
+            <div class="form-group">
+              <label class="input-group-text">Maestria (Percentaje)</label>
+              <input type="number" formControlName="maestria" [(ngModel)]="tec.maestria" class="form-control">
+            </div> <br>
+            <div class="form-group">
+              <label class="input-group-text">Tipo</label>
+              <select type="text" formControlName="tipo" [(ngModel)]="tec.tipo" class="form-control">
+                <option>hard</option>
+                <option>soft</option>
+              </select>
+            </div> <br>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <button type="button" *ngIf="this.editMode==tec.id" (click)="editMode=-1" class="btn btn-warning">Volver</button>
+        </div>
+    </div>
+  </div>
+  <!-- Fin de Muestra -->
+</div>
+
