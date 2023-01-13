@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PersService {
   per;
   constructor(private http: HttpClient, private router: Router) { }
-  uri="http://localhost:8080/personas/"
+  uri="https://portfolio-backend-kmed.onrender.com/personas/"
   addPersona(persona:Personas, perfil:File, banner:File){
 
     const formData: FormData = new FormData();

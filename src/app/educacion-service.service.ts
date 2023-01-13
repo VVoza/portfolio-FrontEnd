@@ -10,7 +10,7 @@ import { Educacion } from './educacion/Educacion';
 export class EducacionService {
 
   constructor(private http: HttpClient, private router: Router) { }
-  uri="http://localhost:8080/personas/";
+  uri="https://portfolio-backend-kmed.onrender.com/personas/";
   uriesp="/educacion";
 
   addEducacion(per_id:number,educacion:Educacion, imagen:File){

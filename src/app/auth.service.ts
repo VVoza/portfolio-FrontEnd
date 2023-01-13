@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  uri = 'http://localhost:8080/authenticate/';
+  uri = 'https://portfolio-backend-kmed.onrender.com/authenticate/';
   token;
 
   constructor(private http: HttpClient, private router: Router) { }

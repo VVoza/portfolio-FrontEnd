@@ -10,7 +10,7 @@ export class ProyectosService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-   uri="http://localhost:8080/personas/";
+   uri="https://portfolio-backend-kmed.onrender.com/personas";
   uriesp="/proyectos";
 
   addProyecto(per_id:number,proyecto:Proyecto){

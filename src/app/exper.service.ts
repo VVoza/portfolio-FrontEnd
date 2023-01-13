@@ -15,7 +15,7 @@ export class ExperService {
 ExpList:Experiencia[];
 
 constructor(private http: HttpClient, private router: Router) { }
-  uri="http://localhost:8080/personas/"
+  uri="https://portfolio-backend-kmed.onrender.com/personas/"
   uriesp="/experiencia"
   addExp(per_id:number,experiencia:Experiencia, imagen:File){
     
