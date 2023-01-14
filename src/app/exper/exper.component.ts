@@ -101,27 +101,31 @@ export class ExperComponent implements OnInit{
 
   converterBase64ToImg(base64){
     var type:string;
-    switch (base64.charAt(0)) {
-      case '/':
-        type = 'jpeg';
-        break;
-      case 'i':
-        type = 'png';
-        break;
-      case 'R':
-        type = 'gif';
-        break;
-      case 'U':
-        return 'webp';
-        break;
-      case 'J':
-        type = 'pdf';
-        break;
-      default:
-        type = 'unknown';
-        break;
+    if(base64!=undefined && base64!=null){
+      switch (base64.charAt(0)) {
+        case '/':
+          type = 'jpeg';
+          break;
+        case 'i':
+          type = 'png';
+          break;
+        case 'R':
+          type = 'gif';
+          break;
+        case 'U':
+          return 'webp';
+          break;
+        case 'J':
+          type = 'pdf';
+          break;
+        default:
+          type = 'unknown';
+          break;
+      }
+      return 'data:image/'+ type + ';base64,' + base64;
+    }else{
+      return "";
     }
-    return 'data:image/'+ type + ';base64,' + base64;
   }
 
 }

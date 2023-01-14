@@ -11,7 +11,7 @@ export class TecnologiasService {
   
   constructor(private http: HttpClient, private router: Router) { }
 
-   uri="https://portfolio-backend-kmed.onrender.com/personas";
+   uri="https://portfolio-backend-kmed.onrender.com/personas/";
   uriesp="/tecnologias";
 
   addTecnologia(per_id:number,tecnologia:Tecnologia){

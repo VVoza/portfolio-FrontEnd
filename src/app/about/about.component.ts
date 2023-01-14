@@ -63,6 +63,9 @@ export class AboutComponent implements OnInit{
 
   converterBase64ToImg(base64){
     var type:string;
+    if(base64==undefined || base64==null){
+      return "";
+    }
     switch (base64.charAt(0)) {
       case '/':
         type = 'jpeg';
