@@ -1,7 +1,7 @@
 <div class="container">
   <button type="button" *ngIf="logIn && getId==per_id" (click)="addMode=!addMode" class="btn btn-success" >Añadir nueva 'Skill'</button>
   <!-- Formulario para añadir entradas -->
-  <form  class="form-inline border border-secondary justify-content-center" [formGroup]="formAdd" *ngIf="addMode==true" (ngSubmit)="onEnviar($event)">
+  <form  class="form-inline border border-secondary justify-content-center formAdd" [formGroup]="formAdd" *ngIf="addMode==true" (ngSubmit)="onEnviar($event)">
       <br>
         <h4>Nueva Habilidad</h4>
       <br>
