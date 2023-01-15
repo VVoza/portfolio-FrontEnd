@@ -51,7 +51,7 @@
           </div> <br>
           <div class="form-group">
             <label class="input-group-text">Descripcion</label>
-            <textarea formControlName="descripcion" class="form-control">{{tec.descripcion}}</textarea>
+            <textarea formControlName="descripcion" [(ngModel)]="tec.descripcion" class="form-control"></textarea>
           </div> <br>
           <div class="form-group">
             <label class="input-group-text">Maestria (Percentaje)</label>

@@ -24,7 +24,7 @@
       </div> <br>
       <div class="form-group">
         <label class="input-group-text">Descripcion</label>
-        <input type="text" formControlName="descripcion" class="form-control">
+        <textarea formControlName="descripcion" class="form-control"></textarea>
       </div> <br>
       <div class="form-group">
         <label class="input-group-text">Imagen de la Empresa:</label>
@@ -78,7 +78,7 @@
         <textarea formControlName="descripcion" [(ngModel)]="edu.descripcion" class="form-control"></textarea>
       </div> <br>
       <div class="form-group">
-        <label class="input-group-text">Imagen de la Empresa:</label>
+        <label class="input-group-text">Imagen del Instituto:</label>
         <input #imageInput type="file" formControlName="imagen" accept="image/*" (change)="fileChange($event)" class="form-control">
       </div>
       <br>

@@ -61,31 +61,32 @@ export class AboutComponent implements OnInit{
     return this.authservice.getId;
   }
 
-  converterBase64ToImg(base64){
+    converterBase64ToImg(base64){
     var type:string;
-    if(base64==undefined || base64==null){
+    if(base64!=undefined && base64!=null){
+      switch (base64.charAt(0)) {
+        case '/':
+          type = 'jpeg';
+          break;
+        case 'i':
+          type = 'png';
+          break;
+        case 'R':
+          type = 'gif';
+          break;
+        case 'U':
+          return 'webp';
+          break;
+        case 'J':
+          type = 'pdf';
+          break;
+        default:
+          type = 'unknown';
+          break;
+      }
+      return 'data:image/'+ type + ';base64,' + base64;
+    }else{
       return "";
     }
-    switch (base64.charAt(0)) {
-      case '/':
-        type = 'jpeg';
-        break;
-      case 'i':
-        type = 'png';
-        break;
-      case 'R':
-        type = 'gif';
-        break;
-      case 'U':
-        return 'webp';
-        break;
-      case 'J':
-        type = 'pdf';
-        break;
-      default:
-        type = 'unknown';
-        break;
-    }
-    return 'data:image/'+ type + ';base64,' + base64;
   }
 }
