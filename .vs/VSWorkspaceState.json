@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\about",
     "\\src\\app\\educacion",
-    "\\src\\app\\exper",
-    "\\src\\app\\footer",
+    "\\src\\app\\error404",
+    "\\src\\app\\header",
+    "\\src\\app\\login",
     "\\src\\app\\main",
     "\\src\\app\\proyectos",
     "\\src\\app\\tecnologias"
   ],
-  "SelectedNode": "\\src\\app\\tecnologias\\tecnologias.component.ts",
+  "SelectedNode": "\\src\\app\\about\\about.component.css",
   "PreviewInSolutionExplorer": false
 }
